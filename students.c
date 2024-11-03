@@ -23,3 +23,21 @@ void addStudent(Student **students, int *studentsNum) {
 
     (*studentsNum)++;
 }
+
+void deleteStudent(Student **students, int *studentsNum, int ra) {
+    for (int i = 0; i < *studentsNum; i++) {
+        if ((*students)[i].ra == ra) {
+            for (int j = i; j < *studentsNum - 1; j++) {
+                (*students)[j] = (*students)[j + 1];
+            }
+            (*studentsNum)--;
+            *students = realloc(*students, (*studentsNum) * sizeof(Student));
+            if (*students == NULL && *studentsNum > 0) {
+                perror("Memory reallocation error");
+                exit(1);
+            }
+            return;
+        }
+    }
+    printf("Student not found.\n");
+}
