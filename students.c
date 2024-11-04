@@ -41,3 +41,20 @@ void deleteStudent(Student **students, int *studentsNum, int ra) {
     }
     printf("Student not found.\n");
 }
+
+Student* getStudent(Student *students, int studentsNum, int ra) {
+    for (int i = 0; i < studentsNum; i++) {
+        if (students[i].ra == ra) {
+            return &students[i];
+        }
+    }
+    return NULL;
+}
+
+void updateGrades(Student *student) {
+    printf("Updating grades for %s:\n", student->name);
+    for (int i = 0; i < student->disciplinesNum; i++) {
+        printf("Enter new grade for discipline %d: ", i + 1);
+        scanf("%f", &student->grades[i]);
+    }
+}
